@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      width: 300px;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    #toggleButton {
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    #toggleButton.disabled {
+      background-color: #f44336;
+    }
+    .slider-container {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    #strengthSlider {
+      width: 100%;
+    }
+    .slider-value {
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button id="toggleButton">Enable Assistant</button>
+    <div class="slider-container">
+      <label for="strengthSlider">Assistant Strength:</label>
+      <input type="range" id="strengthSlider" min="1" max="100" value="100" step="1">
+      <div class="slider-value">Strength: <span id="strengthValue">1.00</span></div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 

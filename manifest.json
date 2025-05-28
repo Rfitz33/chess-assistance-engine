@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Chess Assistance Engine",
+  "version": "1.0",
+  "description": "A chess assistance engine for chess.com",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.chess.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.chess.com/*"],
+      "js": [
+        "lib/stockfish.js",
+        "lib/chess.js",
+        "content.js"
+      ],
+      "css": ["styles.css"]
+    }
+  ],
+  "web_accessible_resources": [{
+    "resources": ["lib/*"],
+    "matches": ["https://www.chess.com/*"]
+  }]
+} 

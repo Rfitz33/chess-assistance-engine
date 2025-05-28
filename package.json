@@ -1,0 +1,15 @@
+{
+  "name": "chess-assistance-engine",
+  "version": "1.0.0",
+  "description": "A chess assistance engine for chess.com",
+  "main": "content.js",
+  "scripts": {
+    "build": "mkdir -p lib && cp node_modules/stockfish.js/stockfish.* lib/ && cp node_modules/chess.js/chess.js lib/"
+  },
+  "dependencies": {
+    "chess.js": "^1.0.0-beta.6",
+    "stockfish.js": "^10.0.2"
+  },
+  "author": "",
+  "license": "MIT"
+} 
