@@ -5,7 +5,9 @@
   "description": "A chess assistance engine for chess.com",
   "permissions": [
     "activeTab",
-    "scripting"
+    "scripting",
+    "storage",
+    "offscreen"
   ],
   "host_permissions": [
     "https://www.chess.com/*"
@@ -13,19 +15,28 @@
   "action": {
     "default_popup": "popup.html"
   },
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
       "matches": ["https://www.chess.com/*"],
       "js": [
-        "lib/stockfish.js",
         "lib/chess.js",
         "content.js"
-      ],
-      "css": ["styles.css"]
+      ]
     }
   ],
   "web_accessible_resources": [{
-    "resources": ["lib/*"],
-    "matches": ["https://www.chess.com/*"]
-  }]
+    "resources": [
+      "lib/stockfish.js",
+      "lib/stockfish.wasm",
+      "offscreen.html"
+    ],
+    "matches": ["https://www.chess.com/*", "chrome-extension://*/*"]
+  }],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; script-src-elem 'self' 'wasm-unsafe-eval'; object-src 'self'",
+    "worker_src": "'self' blob: 'wasm-unsafe-eval'"
+  }
 } 

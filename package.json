@@ -4,7 +4,7 @@
   "description": "A chess assistance engine for chess.com",
   "main": "content.js",
   "scripts": {
-    "build": "mkdir -p lib && cp node_modules/stockfish.js/stockfish.* lib/ && cp node_modules/chess.js/chess.js lib/"
+    "build": "mkdir -p lib && cp node_modules/stockfish.js/stockfish.js lib/ && cp node_modules/chess.js/dist/chess.js lib/"
   },
   "dependencies": {
     "chess.js": "^1.0.0-beta.6",

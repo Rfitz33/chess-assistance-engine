@@ -20,10 +20,21 @@ document.addEventListener('DOMContentLoaded', function() {
     toggleButton.textContent = enabled ? 'Enable Assistant' : 'Disable Assistant';
     
     chrome.storage.local.set({ enabled: !enabled });
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {
-        type: 'toggleAssistant',
-        enabled: !enabled
+    
+    // Send message to all tabs matching chess.com
+    chrome.tabs.query({url: 'https://www.chess.com/*'}, function(tabs) {
+      if (tabs.length === 0) {
+        console.log('No chess.com tabs found');
+        return;
+      }
+      
+      tabs.forEach(tab => {
+        chrome.tabs.sendMessage(tab.id, {
+          type: 'toggleAssistant',
+          enabled: !enabled
+        }).catch(error => {
+          console.log('Error sending message to tab:', error);
+        });
       });
     });
   });
@@ -34,10 +45,21 @@ document.addEventListener('DOMContentLoaded', function() {
     strengthValue.textContent = strength.toFixed(2);
     
     chrome.storage.local.set({ strength });
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.sendMessage(tabs[0].id, {
-        type: 'updateStrength',
-        strength
+    
+    // Send message to all tabs matching chess.com
+    chrome.tabs.query({url: 'https://www.chess.com/*'}, function(tabs) {
+      if (tabs.length === 0) {
+        console.log('No chess.com tabs found');
+        return;
+      }
+      
+      tabs.forEach(tab => {
+        chrome.tabs.sendMessage(tab.id, {
+          type: 'updateStrength',
+          strength
+        }).catch(error => {
+          console.log('Error sending message to tab:', error);
+        });
       });
     });
   });
