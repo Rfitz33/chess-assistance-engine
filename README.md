@@ -54,4 +54,4 @@ To modify the extension:
 
 ## Disclaimer
 
-This extension is for educational purposes only. Using it in real games may violate chess.com's terms of service. 
+This extension is for educational purposes only. Using it in real games may be in violatation of chess.com's terms of service. 
